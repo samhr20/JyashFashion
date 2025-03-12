@@ -9,48 +9,52 @@ import Cart from './pages/Cart'
 import Contact from './pages/Contact'
 import About from './pages/About'
 import { ThemeContextProvider } from "./contexts/ThemeContext"
+import { CartContextProvider } from "./contexts/CartContext"
 const router = createBrowserRouter([
   {
-    path:'/',
-    element: <Layout/>,
-    errorElement:<Error/>,
-    children:[
+    path: '/',
+    element: <Layout />,
+    errorElement: <Error />,
+    children: [
       {
-        path:'/',
-        element: <Home/>
+        path: '/',
+        element: <Home />
       },
       {
-        path:'/products',
-        element: <Products/>
+        path: '/products',
+        element: <Products />
       },
       {
-        path:'/products/:title',
-        element:<ProductsDetails/>
+        path: '/products/:title',
+        element: <ProductsDetails />
       },
       {
-        path:'/cart',
-        element: <Cart/>
+        path: '/cart',
+        element: <Cart />
       },
       {
-        path:'/contactus',
-        element: <Contact/>
+        path: '/contactus',
+        element: <Contact />
       },
       {
         path: '/aboutus',
-        element : <About/>
+        element: <About />
       }
-      
+
     ]
   }
 ])
 
-function App({children}) {
+function App({ children }) {
 
   return (
+
     <ThemeContextProvider>
-     <RouterProvider router={router}>
-       {children}
-     </RouterProvider>
+      <CartContextProvider>
+        <RouterProvider router={router}>
+          {children}
+        </RouterProvider>
+      </CartContextProvider>
     </ThemeContextProvider>
   )
 }
